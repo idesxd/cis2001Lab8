@@ -11,20 +11,29 @@ def merge_sort(arr):
 
 
 def merge(left, right):
-    """Merge two already-sorted lists into one sorted list."""
+    """Merge two sorted lists into one sorted list."""
     merged = []
-    left_index = 0
-    right_index = 0
+    i = 0
+    j = 0
 
-    while left_index < len(left) and right_index < len(right):
-        if left[left_index] <= right[right_index]:
-            merged.append(left[left_index])
-            left_index += 1
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            merged.append(left[i])
+            i += 1
         else:
-            merged.append(right[right_index])
-            right_index += 1
+            merged.append(right[j])
+            j += 1
 
-    merged.extend(left[left_index:])
-    merged.extend(right[right_index:])
+    merged.extend(left[i:])
+    merged.extend(right[j:])
 
     return merged
+
+
+user_input = input("Enter numbers separated by spaces: ")
+
+numbers = [int(x) for x in user_input.split()]
+
+sorted_numbers = merge_sort(numbers)
+
+print("Sorted numbers:", sorted_numbers)
